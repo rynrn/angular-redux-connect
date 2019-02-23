@@ -1,0 +1,25 @@
+{
+  "compilerOptions": {
+    "baseUrl": "./src/connect",
+    "module": "commonjs",
+    "target": "es5",
+    "moduleResolution": "node",
+    "lib": [
+      "es2015",
+      "dom"
+    ],
+    "outDir": "./connect",
+    "strict": false,
+    "noImplicitAny": true,
+    "declaration": true,
+    "inlineSources": false,
+    "inlineSourceMap": false,
+    "removeComments": true,
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true
+  },
+  "typeRoots": [
+    "./node_modules/@types"
+  ],
+  "exclude": ["./index.*"]
+}

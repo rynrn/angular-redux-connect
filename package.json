@@ -1,0 +1,15 @@
+{
+  "name": "angular-redux-connect",
+  "version": "0.0.1",
+  "description": "connect the angular to redux state like react-redux connect",
+  "scripts": {
+    "build": "tsc && tsc index.ts"
+  },
+  "author": "rynrn",
+  "dependencies": {
+    "lodash": "^4.17.11"
+  },
+  "devDependencies": {
+    "@types/lodash": "^4.14.121"
+  }
+}
