@@ -3,6 +3,10 @@
   "version": "0.0.1",
   "description": "connect the angular to redux state like react-redux connect",
   "scripts": {
+    "test": "jest",
+    "test:watch": "jest --watch",
+    "test:ci": "jest --runInBand",
+    "test:1": "jest ./src/index.test.ts",
     "build": "tsc && tsc index.ts"
   },
   "author": "rynrn",
@@ -10,6 +14,37 @@
     "lodash": "^4.17.11"
   },
   "devDependencies": {
-    "@types/lodash": "^4.14.121"
+    "@angular-devkit/build-angular": "*",
+    "@angular/animations": "*",
+    "@angular/cli": "*",
+    "@angular/common": "*",
+    "@angular/compiler": "*",
+    "@angular/compiler-cli": "*",
+    "@angular/core": "*",
+    "@angular/language-service": "*",
+    "@angular/platform-browser": "*",
+    "@angular/platform-browser-dynamic": "*",
+    "@types/jest": "^24.0.6",
+    "@types/lodash": "^4.14.121",
+    "@types/node": "^10.12.12",
+    "codelyzer": "*",
+    "core-js": "^2.6.5",
+    "jest": "^24.1.0",
+    "jest-environment-jsdom-thirteen": "^0.0.2",
+    "jest-preset-angular": "^6.0.2",
+    "redux": "^4.0.1",
+    "rxjs": "*",
+    "systemjs-builder": "*",
+    "ts-jest": "^24.0.0",
+    "typescript": "^3.3.3333",
+    "zone.js": "^0.8.29"
+  },
+  "jest": {
+    "preset": "ts-jest",
+    "globals": {
+      "ts-jest": {
+        "tsConfig": "<rootDir>/tsconfig.spec.json"
+      }
+    }
   }
 }
