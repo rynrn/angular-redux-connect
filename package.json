@@ -1,6 +1,6 @@
 {
   "name": "angular-redux-connect",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "connect the angular to redux state like react-redux connect",
   "homepage": "https://github.com/rynrn/angular-redux-connect",
   "repository": "https://github.com/rynrn/angular-redux-connect",
