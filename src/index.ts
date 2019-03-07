@@ -1,60 +1,60 @@
-import { isEqual, keys } from 'lodash';
-import { getStore, setStore } from './provider';
+import { isEqual, keys, isFunction } from 'lodash';
+import { getStore } from './provider';
 
-export function Connect(mapStateToThis: Function) : ClassDecorator {
-    return function (constructor : any) {
-      let destroyed: boolean = false;
-      let state$: any;
-      let store: any;
-      let prevMappedState: any;
+// mapStateToThis - first arg: state, second arg: ownProps
+export function Connect(mapStateToThis: Function): ClassDecorator {
+    return function (constructor: any) {
+      let store;
+      let unsubscribeState;
+      let prevMappedState;
+      let ownKeys = [];
       const ngOnInitOriginal = constructor.prototype.ngOnInit;
       const ngOnDestroyOriginal = constructor.prototype.ngOnDestroy;
-      
+
       constructor.prototype.ngOnInit = function() {
-        if (destroyed) return;
-        
+
         // get the provided store
         store = getStore();
-  
+
         // map redux state to this of component
         const handleChange = () => {
-          const mappedState = mapStateToThis(store.getState());
+          const mappedState = mapStateToThis(store.getState(), this);
           if (!isEqual(prevMappedState, mappedState)) {
             prevMappedState = mappedState;
-            keys(mappedState).forEach((prop: any) => {
-              this[prop] = mappedState[prop];
+            ownKeys = keys(mappedState);
+            ownKeys.forEach((prop) => {
+              if (!isEqual(this[prop], mappedState[prop])) {
+                this[prop] = mappedState[prop];
+              }
             });
           }
-        }
+        };
 
         // call handleChange in the first time and add listener to changes
         handleChange();
-        state$ = store.subscribe(handleChange)
-  
+        unsubscribeState = store.subscribe(handleChange);
+
         // call to OnInit lifecycle method if exist
         if (ngOnInitOriginal) {
             return ngOnInitOriginal.call(this);
         }
-      }
-  
-      constructor.prototype.ngOnDestroy = function() {
+      };
+
+      constructor.prototype.ngOnDestroy = function(this) {
         clear();
-  
+
         // call to OnDestroy lifecycle method if exist
         if (ngOnDestroyOriginal) {
             return ngOnDestroyOriginal.call(this);
         }
-      }
-  
+      };
+
       const clear = () => {
-        destroyed = true;
-        if (state$ && state$.unsubscribe) {
-          state$.unsubscribe();
+        if (isFunction(unsubscribeState)) {
+          unsubscribeState();
         }
         prevMappedState = undefined;
+        ownKeys = undefined;
       }
-  
     }
   }
-
-  export const Provider = setStore;
