@@ -5,7 +5,7 @@
       "module": "commonjs",
       "target": "es5",
       "baseUrl": "",
-      "types": ["jest", "node"],
+      "types": ["node"],
       "allowJs": true
     },
     "files": [

@@ -1,12 +1,17 @@
 {
   "name": "angular-redux-connect",
-  "version": "0.0.4",
+  "version": "1.0.0",
   "description": "connect the angular to redux state like react-redux connect",
   "homepage": "https://github.com/rynrn/angular-redux-connect",
   "repository": "https://github.com/rynrn/angular-redux-connect",
   "scripts": {
-    "test": "",
-    "build": "tsc && tsc index.ts"
+    "test": "ng test --watch=false -cc",
+    "build": "tsc && tsc index.ts",
+    "lint": "ng lint",
+    "verify": "npm run lint && npm run test && npm run build",
+    "clean": "rimraf ./connect",
+    "copy:json": "copy .\\package.json .\\connect\\package.json /Y",
+    "deploy": "npm run clean && tsc && npm run copy:json && npm publish"
   },
   "author": "rynrn",
   "dependencies": {
@@ -16,8 +21,11 @@
     "@angular-devkit/build-angular": "^0.13.5",
     "@angular/animations": "*",
     "@angular/cli": "~7.0.1",
+    "@angular/compiler": "^7.2.8",
     "@angular/compiler-cli": "^7.2.8",
+    "@angular/core": "^7.2.8",
     "@angular/language-service": "~7.0.0",
+    "@angular/platform-browser-dynamic": "^7.2.8",
     "@types/jasmine": "~2.8.8",
     "@types/jasminewd2": "~2.0.3",
     "@types/lodash": "^4.14.121",
@@ -38,13 +46,5 @@
     "tslint": "~5.11.0",
     "typescript": "^3.3.3333",
     "zone.js": "^0.8.29"
-  },
-  "jest": {
-    "preset": "ts-jest",
-    "globals": {
-      "ts-jest": {
-        "tsConfig": "<rootDir>/tsconfig.spec.json"
-      }
-    }
   }
 }

@@ -10,11 +10,11 @@ const mockStore = {
     }
 };
 
-test('when no provided store the getStore return with undefined', () => {
+describe('when no provided store the getStore return with undefined', () => {
     expect(getStore()).toBe(undefined);
 });
 
-test('should get the provided store', () => {
+describe('should get the provided store', () => {
     setStore(mockStore);
     expect(getStore()).toBe(mockStore);
 });

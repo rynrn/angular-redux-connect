@@ -1,13 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { setStore } from './provider';
 import { Connect } from './index';
-
-
-import { NoopAnimationsModule } from '@angular/platform-browser/animations';
-import { async, ComponentFixture } from '@angular/core/testing';
+import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
-
-import { ConfigureFn, configureTests, createMockStore } from './lib/testing';
+import { configureTests, createMockStore } from './lib/testing/config.helpers';
 
 const mockState = {
   todos: {
@@ -49,22 +45,17 @@ describe('MockComponent', () => {
 
   beforeEach(
     async(() => {
-      const configure: ConfigureFn = (testBed: any) => {
-        testBed.configureTestingModule({
-          declarations: [MockComponent],
-          imports: [NoopAnimationsModule],
-          schemas: [NO_ERRORS_SCHEMA],
-        });
-      };
-
-      configureTests(configure).then((testBed: any) => {
-        store = createMockStore(mockState);
-        setStore(store);
-        store.dispatch({type: 'ACTION'});
-        fixture = testBed.createComponent(MockComponent);
-        component = fixture.componentInstance;
-        fixture.detectChanges();
+      TestBed.configureTestingModule({
+        declarations: [MockComponent],
+        schemas: [NO_ERRORS_SCHEMA]
       });
+
+      store = createMockStore(mockState);
+      setStore(store);
+      store.dispatch({type: 'ACTION'});
+      fixture = TestBed.createComponent(MockComponent);
+      component = fixture.componentInstance;
+      fixture.detectChanges();
     })
   );
 
