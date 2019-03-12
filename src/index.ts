@@ -4,9 +4,9 @@ import { getStore } from './provider';
 // mapStateToThis - first arg: state, second arg: ownProps
 export function Connect(mapStateToThis: Function): ClassDecorator {
     return function (constructor: any) {
-      let store;
-      let unsubscribeState;
-      let prevMappedState;
+      let store: any;
+      let unsubscribeState: any;
+      let prevMappedState: any;
       let ownKeys = [];
       const ngOnInitOriginal = constructor.prototype.ngOnInit;
       const ngOnDestroyOriginal = constructor.prototype.ngOnDestroy;
@@ -22,7 +22,7 @@ export function Connect(mapStateToThis: Function): ClassDecorator {
           if (!isEqual(prevMappedState, mappedState)) {
             prevMappedState = mappedState;
             ownKeys = keys(mappedState);
-            ownKeys.forEach((prop) => {
+            ownKeys.forEach((prop: any) => {
               if (!isEqual(this[prop], mappedState[prop])) {
                 this[prop] = mappedState[prop];
               }
@@ -40,7 +40,7 @@ export function Connect(mapStateToThis: Function): ClassDecorator {
         }
       };
 
-      constructor.prototype.ngOnDestroy = function(this) {
+      constructor.prototype.ngOnDestroy = function() {
         clear();
 
         // call to OnDestroy lifecycle method if exist
