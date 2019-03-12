@@ -1,5 +1,8 @@
 import { isEqual, keys, isFunction } from 'lodash';
-import { getStore } from './provider';
+import { getStore, setStore } from './provider';
+
+// provide redux store for subscribing and getting the state
+export const provideStore = setStore;
 
 // mapStateToThis - first arg: state, second arg: ownProps
 export function Connect(mapStateToThis: Function): ClassDecorator {
