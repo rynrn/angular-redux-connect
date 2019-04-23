@@ -14,6 +14,10 @@ export function Connect(mapStateToThis: Function): ClassDecorator {
       const ngOnInitOriginal = constructor.prototype.ngOnInit;
       const ngOnDestroyOriginal = constructor.prototype.ngOnDestroy;
 
+      if (!ngOnDestroyOriginal) {
+        console.warn('@Connect - Implementing OnDestroy is missing\nplease make sure that you implement OnDestroy even if it empty');
+      }
+
       constructor.prototype.ngOnInit = function() {
 
         // get the provided store
