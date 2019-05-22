@@ -1,6 +1,6 @@
 {
   "name": "angular-redux-connect",
-  "version": "1.0.2",
+  "version": "1.0.4",
   "description": "connect the angular to redux state like react-redux connect",
   "homepage": "https://github.com/rynrn/angular-redux-connect",
   "repository": "https://github.com/rynrn/angular-redux-connect",
@@ -13,12 +13,14 @@
     "copy:json": "copy .\\package.json .\\connect\\package.json /Y",
     "deploy": "npm run clean && tsc && npm run copy:json && cd connect && npm publish"
   },
+  "main": "connect/index.js",
+  "types": "connect/index.d.ts",
   "author": "rynrn",
   "dependencies": {
     "lodash": "^4.17.11"
   },
   "devDependencies": {
-    "@angular-devkit/build-angular": "^0.13.5",
+    "@angular-devkit/build-angular": "^0.13.8",
     "@angular/animations": "*",
     "@angular/cli": "~7.0.1",
     "@angular/compiler": "^7.2.8",

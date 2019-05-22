@@ -10,12 +10,16 @@ export function Connect(mapStateToThis: Function): ClassDecorator {
       let store: any;
       let unsubscribeState: any;
       let prevMappedState: any;
-      let ownKeys = [];
+      let ownKeys: any = [];
       const ngOnInitOriginal = constructor.prototype.ngOnInit;
       const ngOnDestroyOriginal = constructor.prototype.ngOnDestroy;
 
-      if (!ngOnDestroyOriginal) {
+      if (!ngOnDestroyOriginal || !ngOnInitOriginal) {
         console.warn('@Connect - Implementing OnDestroy is missing\nplease make sure that you implement OnDestroy even if it empty');
+      }
+
+      if (!ngOnInitOriginal) {
+        console.warn('@Connect - Implementing OnInit is missing\nplease make sure that you implement OnInit even if it empty');
       }
 
       constructor.prototype.ngOnInit = function() {
