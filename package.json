@@ -1,12 +1,12 @@
 {
   "name": "angular-redux-connect",
-  "version": "1.0.4",
+  "version": "1.1.0",
   "description": "connect the angular to redux state like react-redux connect",
   "homepage": "https://github.com/rynrn/angular-redux-connect",
   "repository": "https://github.com/rynrn/angular-redux-connect",
   "scripts": {
     "test": "ng test --watch=false -cc",
-    "build": "tsc && tsc index.ts",
+    "build": "tsc",
     "lint": "ng lint",
     "verify": "npm run lint && npm run test && npm run build",
     "clean": "rimraf ./connect",
@@ -16,8 +16,8 @@
   "main": "connect/index.js",
   "types": "connect/index.d.ts",
   "author": "rynrn",
-  "dependencies": {
-    "lodash": "^4.17.11"
+  "peerDependencies": {
+    "lodash": "^4.17.20"
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "^0.13.8",
@@ -41,12 +41,19 @@
     "karma-coverage-istanbul-reporter": "~2.0.1",
     "karma-jasmine": "~1.1.2",
     "karma-jasmine-html-reporter": "^0.2.2",
-    "protractor": "~5.4.0",
     "redux": "^4.0.1",
     "rxjs": "*",
     "ts-node": "~7.0.0",
     "tslint": "~5.11.0",
     "typescript": "^3.3.3333",
     "zone.js": "^0.8.29"
-  }
+  },
+  "license": "MIT",
+  "keywords": [
+    "angular-redux-connect",
+    "angular",
+    "redux",
+    "react-redux",
+    "decorator"
+  ]
 }
