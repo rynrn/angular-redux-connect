@@ -9,6 +9,8 @@
 The library helps you to update the Angular component state from the redux state.
 inspired by `react-redux` connect.
 
+Note: the library is AOT supported.
+
 [Demo](https://stackblitz.com/edit/angular-redux-connect)
 
 ### Using
